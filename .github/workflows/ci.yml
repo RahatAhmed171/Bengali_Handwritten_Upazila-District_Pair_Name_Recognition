@@ -30,7 +30,12 @@ jobs:
 
       - name: Verify application imports
         run: |
-          python -c "from app import app; print('Application imported successfully')"
+          python -c "from api import app; print('Backend API imported successfully')"
+      
+
+      - name: Verify Frontend UI imports
+        run: |
+          python -c "import streamlit; print('Streamlit framework loaded successfully')"
 
       - name: Build Docker image
         run: |

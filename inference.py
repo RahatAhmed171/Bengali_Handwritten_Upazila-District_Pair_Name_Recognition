@@ -2,6 +2,7 @@ import json
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import streamlit as st
 from PIL import Image
 from torchvision import transforms
 from huggingface_hub import hf_hub_download
@@ -28,6 +29,7 @@ val_transform = transforms.Compose([
     transforms.Normalize(mean=config.NORM_MEAN, std=config.NORM_STD),
 ])
 
+@st.cache_resource(show_spinner="📥 Initializing ensemble models from Hugging Face...")
 def load_ensemble_models(version: str):
     """
     Downloads model checkpoints from Hugging Face Hub, builds the structural 
